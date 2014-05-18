@@ -44,18 +44,24 @@ void loop() {
 void process() {
   index = 0;
 
-  Serial.print("messageBuffer = ");
-  Serial.println(messageBuffer);
+  if(debug){
+    Serial.print("messageBuffer = ");
+    Serial.println(messageBuffer);
+  }
 
   strncpy(cmd, messageBuffer, 2);
   cmd[2] = '\0';
-  Serial.print("cmd = ");
-  Serial.println(cmd);
+  if(debug){
+    Serial.print("cmd = ");
+    Serial.println(cmd);
+  }
 
   strncpy(pin, messageBuffer + 2, 2);
   pin[2] = '\0';
-  Serial.print("pin = ");
-  Serial.println(pin);
+  if(debug){
+    Serial.print("pin = ");
+    Serial.println(pin);
+  }
 
   if (debug) {
     Serial.println(messageBuffer);
@@ -66,32 +72,26 @@ void process() {
     
     strncpy(val, messageBuffer + 4, 12);
     val[12] = '\0';
-    Serial.print("val = ");
-    Serial.println(val);
-
-  } else if (cmdid > 90) {
-
-    strncpy(val, messageBuffer + 4, 3);
-    val[4] = '\0';
-    Serial.print("val = ");
-    Serial.println(val);
-    
-    strncpy(aux, messageBuffer + 7, 3);
-    aux[3] = '\0';
-    Serial.print("aux = ");
-    Serial.println(aux);
+    if(debug){
+      Serial.print("val = ");
+      Serial.println(val);
+    }
 
   } else {
 
     strncpy(val, messageBuffer + 4, 3);
     val[4] = '\0';
-    Serial.print("val = ");
-    Serial.println(val);
+    if(debug){
+      Serial.print("val = ");
+      Serial.println(val);
+    }
 
     strncpy(aux, messageBuffer + 7, 3);
     aux[3] = '\0';
-    Serial.print("aux = ");
-    Serial.println(aux);
+    if(debug){
+      Serial.print("aux = ");
+      Serial.println(aux);
+    }
   }
 
   // Serial.println(cmd);
